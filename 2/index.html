@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="user-form" method="post">
+        <label>Your email: </label>
+        <input name="email">
+        <label>Your login: </label>
+        <input name="login">
+        <br>
+        <br>
+        <label>Your password: </label>
+        <input type="password" name="pass">
+        <label>Repeat password: </label>
+        <input type="password" name="rpass">
+    <br>
+        <button type="submit">Sign in</button>
+    </form>
+    <div id="users"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let form = document.querySelector("#user-form");
+            let email = form.querySelector("input[name='email']");
+            let login = form.querySelector("input[name='login']");
+            let pass = form.querySelector("input[name='pass']");
+            let rpass = form.querySelector("input[name='rpass']");
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                let em = email.value;
+                let l = login.value;
+                let p = pass.value;
+                let rp = rpass.value;
+                if (p == rp) {
+                    let div = document.createElement("div");
+                    div.innerHTML = `<div>
+        <div class="content">На  ${em} надіслано лист з підтвердженням.}</div>
+</div>`;
+document.querySelector("#users").appendChild(div);
+                }
+                else {
+                    alert("Невірний пароль.");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="user-form" method="post">
+        <label>Your login:</label>
+        <br>
+        <input name="login">
+        <br>
+        <label>Your password:</label>
+        <br>
+        <input type="password" name="pass">
+        <br>
+        <label>Remember me: </label>
+        <input type="checkbox" name="rembemberme">
+        <br>
+        <button type="submit">Sign in</button>
+    </form>
+    <div id="users"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let form = document.querySelector("#user-form");
+            let login = form.querySelector("input[name='login']");
+            let pass = form.querySelector("input[name='pass']");
+            let rembemberme = form.querySelector("input[name='rembemberme']");
+            form.addEventListener("submit", function (e,) {
+                e.preventDefault();
+                let l = login.value;
+                let p = pass.value;
+                let r = rembemberme.checked;
+                console.log(l + " " + p + " " + r);
+                let text;
+                if (r == true) {
+                    text = "Я вас запам'ятав.";
+                }
+                else {
+                    text = "Я вас не запам'ятав.";
+                }
+                let div = document.createElement("div");
+                div.innerHTML = `<div>
+        <div class="content">Привіт, ${l}!${text}}</div>
+</div>`;
+                document.querySelector("#users").appendChild(div);
+            });
+        });
+    </script>
+</body>
+
+</html>

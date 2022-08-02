@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            height: 30px;
+            border: 1px solid black;
+            margin-left: 0px;
+            margin-top: 0px;
+            outline: none;
+        }
+
+        input:focus {
+            border: 1px solid black;
+        }
+
+        label {
+            float: left;
+            margin: top 10%;
+            border: 1px solid black;
+            padding: 7px;
+            margin-right: 0px;
+            border-right-width: 0px;
+        }
+
+        #color {
+            border: 1px solid black;
+            width: 30px;
+            height: 30px;
+            display: block;
+            border-right-width: 0px;
+        }
+
+        #textcolor {
+            border: 1px solid black;
+            height: 30px;
+            width: 150px;
+            text-align: center;
+        }
+        .block {
+            display: inline-flex;
+        }
+        button{
+            margin-left: 10px;
+            height: 35px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="add" method="post">
+
+        <div class="block">
+            <label>R</label>
+            <input id="red" inputmode="numeric"></input>
+        </div>
+        <div class="block">
+            <label>G</label>
+            <input id="green" inputmode="numeric"></input>
+        </div>
+        <div class="block">
+            <label>B</label>
+            <input id="blue" inputmode="numeric"></input>
+        </div>
+        <button type="submit">Add color</button>
+    </form>
+    <hr>
+    <div id="colors">
+
+    </div>
+    <!-- <div class="block">
+        <div style="background-color: rgb(255,255,255);" id="color">
+        </div>
+        <div id="textcolor">
+            <a>RGB (${r}, ${g}, ${b})</a>
+        </div>
+    </div> -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let form = document.querySelector("#add");
+            let red=form.querySelector("#red");
+            let blue=form.querySelector("#blue");
+            let green=form.querySelector("#green");
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                let r = red.value;
+                let g = green.value;
+                let b = blue.value;
+                let div = document.createElement("div");
+                div.innerHTML = `<div class="block">
+        <div style="background-color: rgb(${r},${g},${b});" id="color">
+        </div>
+        <div id="textcolor">
+            <a>RGB (${r}, ${g}, ${b})</a>
+        </div>
+    </div>`;
+                document.querySelector("#colors").appendChild(div);
+            });
+        });
+    </script>
+</body>
+
+</html>

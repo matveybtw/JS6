@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .block {
+            display: inline-block;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td,
+        th {
+            border: 1px solid black;    
+            text-align: left;
+            padding: 8px;
+        }
+    </style> 
+</head>
+
+<body>
+    <form id="user-form" method="post">
+        <div class="block">
+              <label>Firstname:</label>
+            <br>
+            <input id="firstname">
+        </div>
+        <div class="block">
+            <label>Lastname:</label>
+            <br>
+            <input id="lastname">
+        </div>
+        <br>
+        <div class="block">
+            <label>Birthday:</label>
+            <br>
+            <input id="birthday" type="date">
+        </div>
+        <div class="block">
+            <label>Gender:</label>
+            <input checked="true" value="Male" name="gender" type="radio">
+            <label>Male</label>
+            <input value="Female" name="gender" type="radio">
+            <label>Female</label>
+        </div>
+        <br>
+        <div class="block">
+            <label>Country:</label>
+            <br>
+            <input name="country" list="country" />
+            <datalist id="country">
+                <option value="Ukraine">
+            </datalist>
+        </div>
+        <div class="block">
+            <label>City:</label>
+            <br>
+            <input name="city" list="city" />
+            <datalist id="city">
+                <option value="Ternopil">
+            </datalist>
+        </div>
+        <br>
+        <div>
+            <label>Skills:</label>
+            <input value="HTML" name="skill" type="checkbox">
+            <label>HTML</label>
+            <input value="CSS" name="skill" type="checkbox">
+            <label>CSS</label>
+            <input value="JS" name="skill" type="checkbox">     
+            <label>JS</label>
+            <input value="PHP" name="skill" type="checkbox">
+            <label>PHP</label>
+            <input value="C++" name="skill" type="checkbox">
+            <label>C++</label>
+            <input value="JAVA" name="skill" type="checkbox">
+            <label>JAVA</label>
+            <input value="C#" name="skill" type="checkbox">
+            <label>C#</label>
+        </div>
+        
+        <button type="submit">Save</button>
+        <br>
+        <div id="results"></div>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let form = document.querySelector("#user-form");
+            let firstname=form.querySelector("#firstname");
+            let lastname=form.querySelector("#lastname");
+            let birthday=form.querySelector("#birthday");
+            let country=form.querySelector("input[name='country']");
+            let city = form.querySelector("input[name='city']");
+            let gender=form.querySelectorAll("input[name='gender']");
+            let skills=form.querySelectorAll("input[name='skill']");
+            form.addEventListener("submit", function(e)
+            {
+                e.preventDefault();
+                
+                let s="";
+                for(let skill of skills)
+                {
+                    if(skill.checked)
+                    {
+                        s+=skill.value+", ";
+                    }
+                }
+                s=s.substr(0,s.length-2);
+                let g;
+                for(let i of gender)
+                {
+                    if(i.checked)
+                    {
+                        g=i.value;
+                    }
+                }
+                console.log(`${firstname.value} ${lastname.value} ${birthday.value} ${country.value} ${city.value} ${g} ${s}`);
+                let div= document.createElement("div");
+                div.innerHTML=`<div>
+            <label>Results:</label>
+            <table>
+                <tr>
+                    <th>Firstname</th>
+                    <td>${firstname.value}</td>
+                </tr>
+                <tr>
+                    <th>Lastname</th>
+                    <td>${lastname.value}</td>
+                </tr>
+                <tr>
+                    <th>Birthday</th>
+                    <td>${birthday.value}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>${g}</td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td>${country.value}</td>
+                </tr>
+                <tr>
+                    <th>City</th>
+                    <td>${city.value}</td>
+                </tr>
+                <tr>
+                    <th>Skills</th>
+                    <td>${s}</td>
+                </tr>
+            </table>
+        </div>`;
+        document.querySelector("#results").appendChild(div);
+            });
+            
+        });
+    </script>
+</body>
+
+</html>

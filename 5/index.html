@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .questions {
+            border-top: 5px;
+            padding-top: 5px;
+            border-color: black;
+            border-width: 1px;
+        }
+        hr{
+            border: none; 
+    background-color: black;
+    height: 1px;
+            opacity: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>All questions</h1>
+    <hr>
+    <div id="questions">
+
+    </div>
+    <form id="add" method="post">
+        <h1>Add new question:</h1>
+        <label>Question:</label>
+        <input id="question">
+        <br>
+        <label>Correct answer:</label>
+        <input id="correct">
+        <br>
+        <label>Wrong answer:</label>
+        <input id="wrong">
+        <br>
+        <button type="submit">Add</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let form = document.querySelector("#add");
+            let question = form.querySelector("#question");
+            let correct = form.querySelector("#correct");
+            let wrong = form.querySelector("#wrong");
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                let q = question.value;
+                let c = correct.value;
+                let w = wrong.value;
+                let div = document.createElement("div");
+                div.innerHTML = `<div>
+        <p style="text-decoration: underline;">${q}</p>
+        <p>Correct answer: ${c}</p>
+        <p>Wrong answer: ${w}</p>
+        <hr>
+</div>`;
+                document.querySelector("#questions").appendChild(div);
+            });
+        });
+    </script>
+</body>
+
+</html>
