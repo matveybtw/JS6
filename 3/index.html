@@ -104,16 +104,13 @@
             form.addEventListener("submit", function(e)
             {
                 e.preventDefault();
-                
-                let s="";
+                let ss=[];
                 for(let skill of skills)
                 {
-                    if(skill.checked)
-                    {
-                        s+=skill.value+", ";
-                    }
+                    ss.push(skill.value);
                 }
-                s=s.substr(0,s.length-2);
+                let s = ss.join(", ");
+                // s=s.substr(0,s.length-2);
                 let g;
                 for(let i of gender)
                 {
